@@ -35,7 +35,7 @@ root.tmp:
 	mkdir -p root.tmp/dev
 	mkdir -p root.tmp/proc
 	mkdir -p root.tmp/sbin
-bin: bin.tmp bin.tmp/toolchain_i386 bin.tmp/syslinux
+bin/: bin.tmp bin.tmp/toolchain_i386 bin.tmp/syslinux
 	mv bin.tmp bin
 bin.tmp: 
 	mkdir bin.tmp
