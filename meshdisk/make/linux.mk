@@ -2,7 +2,7 @@
 LINUX_LOCATION=ftp://ftp.kernel.org/pub/linux/kernel/v2.4/
 LINUX_FILE=linux-2.4.28.tar.bz2
 LINUX_DIR=linux-2.4.28
-LINUX_TARGET=build/$(DIR)/arch/i386/boot/bzImage
+LINUX_TARGET=build/$(LINUX_DIR)/arch/i386/boot/bzImage
 
 bzImage:  $(LINUX_TARGET)
 	cp -r $(LINUX_TARGET) bzImage
