@@ -25,16 +25,16 @@ root: root.tmp bin root.tmp/bin/busybox root.tmp/bin/iwconfig root.tmp/bin/olsrd
 	mv root.tmp root
 
 root.tmp:
-	mkdir -P root.tmp/bin
-	mkdir -P root.tmp/etc
-	mkdir -P root.tmp/root
-	mkdir -P root.tmp/lib
-	mkdir -P root.tmp/var
-	mkdir -P root.tmp/mnt
-	mkdir -P root.tmp/dev
-	mkdir -P root.tmp/proc
-	mkdir -P root.tmp/sbin
+	mkdir -p root.tmp/bin
+	mkdir -p root.tmp/etc
+	mkdir -p root.tmp/root
+	mkdir -p root.tmp/lib
+	mkdir -p root.tmp/var
+	mkdir -p root.tmp/mnt
+	mkdir -p root.tmp/dev
+	mkdir -p root.tmp/proc
+	mkdir -p root.tmp/sbin
 bin: bin.tmp bin.tmp/toolchain_i386
-	mv boot.tmp boot
-bin: 
-	mkdir bin
+	mv bin.tmp bin
+bin.tmp: 
+	mkdir bin.tmp
