@@ -1,0 +1,43 @@
+#!/bin/ash 
+echo init...
+mount -t vfat /dev/fd0 /mnt 
+cp /mnt/rc.config /etc
+umount /mnt
+if [ -f /etc/rc.config ]; then
+. /etc/rc.config
+fi
+mount -a
+hostname $HOSTNAME
+ifconfig lo 127.0.0.1
+if [ "$LAN_IPADDR" != "" ]; then 
+  ifconfig $LAN_IFACE $LAN_IPADDR netmask $LAN_NETMASK broadcast $LAN_BROADCAST
+fi
+if [ "$WLAN_SSID" != "" ]; then
+  sed -f - /etc/pcmcia/wireless.opts.tmpl > /etc/pcmcia/wireless.opts <<EOF
+s-WLAN_SSID-$WLAN_SSID-g
+s-WLAN_CHANNEL-$WLAN_CHANNEL-g
+s-WLAN_MODE-$WLAN_MODE-g
+EOF
+
+fi
+if [ "$WLAN_IPADDR" != "" ]; then
+  sed /etc/pcmcia/network.opts.tmpl > /etc/pcmcia/network.opts <<EOF
+s-WLAN_IPADDR-$WLAN_IPADDR-g
+s-WLAN_NETMASK-$WLAN_NETMASK-g
+s-WLAN_BROADCAST-$WLAN_BROADCAST-g
+s-WLAN_NETWORK-$WLAN_NETWORK-g
+EOF
+fi  
+if [ "$CARDMGR" = "YES" ]; then
+  /sbin/cardmgr
+fi
+if [ "$DROPBEAR" = "YES" ]; then
+  if [ "$DROPBEAR_CREATE_HOST_KEY" = "YES" ]; then
+    dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key
+   fi
+   dropbear $DROPBEAR_FLAGS
+fi
+if [ "$OLSRD" = "YES" ]; then
+  /bin/olsrd $OLSRD_FLAGS
+fi 
+
