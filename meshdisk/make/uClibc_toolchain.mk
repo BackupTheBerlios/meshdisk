@@ -3,7 +3,7 @@ LOCATION=http://meshdisk.berlios.de/src/
 FILE=uClibc-toolchain-snapshot-20041207.tar.gz
 DIR=toolchain
 TARGET=build/$(DIR)/gcc-3.3.x/toolchain_i386/bin/i386-linux-uclibc-gcc
-UCLIBS="crt0.o \
+UCLIBS=crt0.o \
 crt1.o \
 crti.o \
 crtn.o \
@@ -36,11 +36,10 @@ libthread_db.so.1 \
 libuClibc-0.9.26.so \
 libutil-0.9.26.so \
 libutil.so \
-libutil.so.0 \
-"
+libutil.so.0 
 
 bin.tmp/toolchain_i386:  root.tmp $(TARGET)
-	cp -a build/$(DIR)/gcc-3.3.x/toolchain_i386/lib root.tmp/lib
+	cd build/$(DIR)/gcc-3.3.x/toolchain_i386/lib && cp -a $(UCLIBS) ../../../../../root.tmp/lib
 	cp -r build/$(DIR)/gcc-3.3.x/toolchain_i386 bin.tmp
 	
 $(TARGET): build/$(DIR)

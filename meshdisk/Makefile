@@ -23,6 +23,8 @@ clean:
 root.tar.gz: root
 	cd root && tar -cvzf ../root.tar.gz .
 root: root.tmp bin root.tmp/bin/busybox root.tmp/bin/iwconfig root.tmp/bin/olsrd root.tmp/bin/cardmgr root.tmp/bin/dropbear
+	cd root.tmp/bin && strip
+	cd root.tmp/lib && strip
 	mv root.tmp root
 
 root.tmp:
