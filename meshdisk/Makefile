@@ -1,5 +1,5 @@
 
-all: root.tar.gz initrd.gz 
+all: bzImage root.tar.gz initrd.gz 
 include ./make/*.mk
 
 
