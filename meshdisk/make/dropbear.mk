@@ -1,7 +1,7 @@
 
 DB_LOCATION=http://matt.ucc.asn.au/dropbear/releases/
-DB_FILE=dropbear-0.43.tar.gz
-DB_DIR=dropbear-0.43
+DB_FILE=dropbear-0.44.tar.gz
+DB_DIR=dropbear-0.44
 DB_TARGET=build/$(DB_DIR)/dropbearmulti
 
 root.tmp/bin/dropbear:  $(DB_TARGET)
